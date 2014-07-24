@@ -31,6 +31,7 @@ body {
   fill: #ff11ee;
   opacity: 0.5;
 }
+
 </style>
 <body>
 <script src="http://d3js.org/d3.v3.min.js"></script>
@@ -69,11 +70,6 @@ var body = d3.select("body"),
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-// add the tooltip area to the webpage
-var tooltip = d3.select("body").append("div")
-    .attr("class", "tooltip")
-    .style("opacity", 1);
 
 // Load data
 d3.csv("data.csv", function(error, data) {
@@ -120,17 +116,17 @@ d3.csv("data.csv", function(error, data) {
       .attr("cy", yMap)
       .style("fill", function(d) { return color(cValue(d));});
 
-  body.selectAll(".tooltip")
+  body.selectAll("div")
     .data(data)
     .enter()
     .append("div")
       .attr("class", "tooltip")
       .attr("style", function(d) {
-        var x = xMap(d) + 45;
-        var y = yMap(d) + 28;
-        console.log('x:' + x);
-        console.log('xmap:' + xMap(d));
-        return "left:" + x + "px;";
+        var x = xMap(d) + 45,
+          y = yMap(d) + 40,
+          left = "left:" + x + "px;",
+          right = "top:" + y + "px;";
+        return left + right;
       }).text(function(d) {
         return d.Method + "(" + xValue(d) + "%, " + yValue(d) + "%)";
       });
@@ -167,14 +163,14 @@ d3.csv("data.csv", function(error, data) {
     ]])
     .enter()
     .append("polygon")
-    .attr("class", "ideal")
-    .attr("points", function(d) {
-      var points = '';
-      for(var i = 0; i < d.length; i++) {
-        points += xScale(d[i].x) + ', ' + yScale(d[i].y) + ' ';
-      }
-      return points;
-    });
+      .attr("class", "ideal")
+      .attr("points", function(d) {
+        var points = '';
+        for(var i = 0; i < d.length; i++) {
+          points += xScale(d[i].x) + ', ' + yScale(d[i].y) + ' ';
+        }
+        return points;
+      });
 
 });
 </script>
