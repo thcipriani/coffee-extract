@@ -7,7 +7,20 @@
 
 <style>
 body {
+  color: #555;
+  font-family: sans-serif;
+}
+
+.container {
+  width: 960px;
+  margin: 0 auto;
+}
+
+.main {
+  position: relative;
   font: 11px sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 .axis path,
@@ -28,12 +41,35 @@ body {
 }
 
 .ideal {
-  fill: #ff11ee;
+  fill: #e7ba52;
   opacity: 0.5;
+}
+
+.ideal-text {
+  fill: #bd9e39;
+  font-size: 2em;
+}
+
+.not-ideal {
+  fill: #e7cb94;
+  opacity: 0.5;
+}
+
+.not-ideal-text {
+  fill: #8c6d31;
 }
 
 </style>
 <body>
+
+<div class="container">
+  <h1>Coffee Extraction</h1>
+  <p>
+    Comparing Total Dissolved Solids (TDS)% with Soluble Extract%
+  </p>
+  <figure class="main"></figure>
+</div>
+
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
@@ -64,7 +100,7 @@ var cValue = function(d) { return d.Method;},
     color = d3.scale.category10();
 
 // add the graph canvas to the body of the webpage
-var body = d3.select("body"),
+var body = d3.select(".main"),
   svg = body.append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -106,6 +142,124 @@ d3.csv("data.csv", function(error, data) {
       .style("text-anchor", "end")
       .text("Strength | TDS (%)");
 
+  var areas = [
+    {
+      "label": "Ideal",
+      "class": "ideal",
+      "points": [
+        {"x": 18.000, "y": 1.150},
+        {"x": 22.000, "y": 1.150},
+        {"x": 22.000, "y": 1.350},
+        {"x": 18.000, "y": 1.350}
+      ]
+    },
+
+    // Weak
+    {
+      "label": "Weak",
+      "class": "not-ideal",
+      "points": [
+        {"x": 18.000, "y": d3.min(data, yValue) - 0.2},
+        {"x": 22.000, "y": d3.min(data, yValue) - 0.2},
+        {"x": 22.000, "y": 1.150},
+        {"x": 18.000, "y": 1.150}
+      ]
+    },
+
+    // Strong
+    {
+      "label": "Strong",
+      "class": "not-ideal",
+      "points": [
+        {"x": 18.000, "y": d3.max(data, yValue) + 0.2},
+        {"x": 22.000, "y": d3.max(data, yValue) + 0.2},
+        {"x": 22.000, "y": 1.350},
+        {"x": 18.000, "y": 1.350}
+      ]
+    },
+
+    // Under
+    {
+      "label": "Under Extracted",
+      "class": "not-ideal",
+      "points": [
+        {"x": d3.min(data, xValue) - 0.2, "y": 1.150},
+        {"x": 18.000, "y": 1.150},
+        {"x": 18.000, "y": 1.350},
+        {"x": d3.min(data, xValue) - 0.2, "y": 1.350}
+      ]
+    },
+
+    // Over
+    {
+      "label": "Over Extracted",
+      "class": "not-ideal",
+      "points": [
+        {"x": 22.000, "y": 1.150},
+        {"x": d3.max(data, xValue) + 0.2, "y": 1.150},
+        {"x": d3.max(data, xValue) + 0.2, "y": 1.350},
+        {"x": 22.000, "y": 1.350}
+      ]
+    }
+  ];
+
+
+  var makePoly = function(coor) {
+    return coor.map(function(d) {
+      return xScale(d.x) + ', ' + yScale(d.y);
+    }).join(' ');
+  };
+
+  var findPolyCenter = function(coor) {
+    var x = 0, y = 0,
+      min_x = 0, min_y = 0;
+    for (var i = 0, len = coor.length; i < len; i++) {
+      if (i === 0) {
+        min_x = coor[i].x
+        min_y = coor[i].y
+      }
+      if (coor[i].x < min_x)
+        min_x = coor[i].x
+
+      if (coor[i].y < min_y)
+        min_y = coor[i].y
+
+      if (coor[i].x > x)
+        x = coor[i].x
+
+      if (coor[i].y > y)
+        y = coor[i].y
+    }
+
+    return {
+      "max": {
+        "x": x,
+        "y": y
+      },
+      "min": {
+        "x": min_x,
+        "y": min_y
+      }
+    };
+  };
+
+  var areaGroup = svg.append("g");
+
+  areas.forEach(function(d) {
+    areaGroup.append("polygon")
+      .attr("class", d.class)
+      .attr("points", makePoly(d.points));
+
+    var bounds = findPolyCenter(d.points);
+
+    areaGroup.append("text")
+      .attr("class", d.class + "-text")
+      .attr("text-anchor", "middle")
+      .attr("x", xScale((bounds.max.x + bounds.min.x)/2))
+      .attr("y", yScale((bounds.max.y + bounds.min.y)/2))
+      .text(d.label);
+  });
+
   // draw dots
   svg.selectAll(".dot")
       .data(data)
@@ -122,8 +276,8 @@ d3.csv("data.csv", function(error, data) {
     .append("div")
       .attr("class", "tooltip")
       .attr("style", function(d) {
-        var x = xMap(d) + 45,
-          y = yMap(d) + 40,
+        var x = xMap(d) + 35,
+          y = yMap(d) + 30,
           left = "left:" + x + "px;",
           right = "top:" + y + "px;";
         return left + right;
@@ -152,25 +306,6 @@ d3.csv("data.csv", function(error, data) {
       .attr("dy", ".35em")
       .style("text-anchor", "end")
       .text(function(d) { return d;})
-
-  // draw ideal window
-  var ideal = svg.selectAll("polygon")
-    .data([[
-      {"x": 18.000, "y": 1.150},
-      {"x": 22.000, "y": 1.150},
-      {"x": 22.000, "y": 1.350},
-      {"x": 18.000, "y": 1.350}
-    ]])
-    .enter()
-    .append("polygon")
-      .attr("class", "ideal")
-      .attr("points", function(d) {
-        var points = '';
-        for(var i = 0; i < d.length; i++) {
-          points += xScale(d[i].x) + ', ' + yScale(d[i].y) + ' ';
-        }
-        return points;
-      });
 
 });
 </script>
