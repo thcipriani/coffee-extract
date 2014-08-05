@@ -120,6 +120,19 @@ Trial 2
     187 * .0102 / 11
     17.34%TDS
 
+Trial 3
+---
+* BEANS: 11g
+* WATER: 200g
+* GRIND: Baratza Maestro Plus 8 Ground
+* YIELD: 190mL Coffee
+* TASTE: Mild, maybe a bit thin
+
+    TDS Meter: 1.090%
+    Brix: 1.1% ~ 0.935% TDS
+    190 * .00935 / 11
+    16.15%TDS
+
 
 
 * * *
