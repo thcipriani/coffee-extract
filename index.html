@@ -275,10 +275,16 @@ d3.csv("data.csv", function(error, data) {
     .enter()
     .append("div")
       .attr("class", "tooltip")
-      .attr("style", function(d) {
-        var x = xMap(d) + 35,
-          y = yMap(d) + 30,
-          left = "left:" + x + "px;",
+      .attr("style", function(d, i) {
+        if (i % 2 || i === 8) {
+          var x = xMap(d) + 35,
+            y = yMap(d) + 30;
+        } else {
+          var x = xMap(d) + 35,
+            y = yMap(d) - 30;
+        }
+
+        var left = "left:" + x + "px;",
           right = "top:" + y + "px;";
         return left + right;
       }).text(function(d) {
