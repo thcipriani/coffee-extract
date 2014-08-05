@@ -76,6 +76,19 @@ Trial 2
     625 * 0.0119 / 38.5
     0.19318181818
 
+Trial 3
+---
+* BEANS: 38.5g
+* WATER: 700g
+* GRIND: BMP@8
+* YIELD: 621mL (1277g)
+* Taste: Mild, Clean
+
+    TDS Meter: 1.170%
+    Brix: 1.3% ~ 1.105%TDS
+    621 * 0.0105 / 38.5
+    0.16936363636 16.9336
+
 * * *
 
 Aeropress (empty 411g)
@@ -94,6 +107,21 @@ Trial 1
     187 * .935 / 11
     15.895%
 
+Trial 2
+---
+* BEANS: 11g
+* WATER: 200g
+* GRIND: Baratza Maestro Plus 8 Ground
+* YIELD: 187mL Coffee
+* TASTE: Best so far, bold but clean
+
+    TDS Meter: 1.130%
+    Brix: 1.2% ~ 1.020% TDS
+    187 * .0102 / 11
+    17.34%TDS
+
+
+
 * * *
 
 French Press
@@ -102,7 +130,10 @@ blah
 
 * * *
 
-Mr Coffee
+Mr Coffee (410g empty)
+===
+
+Trial 1
 ---
 * COFFEE: 38.5g 8 O'Clock medium roast
 * WATER: 700g
@@ -115,3 +146,29 @@ Mr Coffee
     TDS Meter @ 77 °F ~ 1.51% TDS
     606 * .01615 / 38.5
     .2542051948 ~ 25.42%
+
+Trial 2
+---
+* COFFEE: 38.5g 8 O'Clock medium roast
+* WATER: 700g
+* GRIND: with Baratza Maestro Plus on setting 8
+* YIELD: 565mL coffee (975g)
+* TASTE: strongly bitter
+
+    1.9% brix ~ 1.615% TDS
+    TDS Meter @ 77F ~ 1.42% TDS
+    565 * .01615 / 38.5
+    0.2370064935 ~ 23.70%
+
+Trial 3
+---
+* COFFEE: 38.5g 8 O'Clock medium roast
+* WATER: 700g
+* GRIND: with Baratza Maestro Plus on setting 8
+* YIELD: 587mL coffee (988g)
+* TASTE: sharp/bitter/bitting
+
+    1.9% brix ~ 1.615% TDS
+    TDS Meter @ 77F ~ 1.43% TDS
+    578 * .01615 / 38.5
+    0.24245974026 ~ 24.245%
