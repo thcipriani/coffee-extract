@@ -11,6 +11,15 @@ body {
   font-family: sans-serif;
 }
 
+header {
+  border-bottom: 1px solid #ccc;
+}
+
+figure {
+  margin: 0;
+  padding: 0;
+}
+
 .container {
   width: 960px;
   margin: 0 auto;
@@ -18,7 +27,7 @@ body {
 
 .main {
   position: relative;
-  font: 11px sans-serif;
+  font: 10px sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -63,11 +72,66 @@ body {
 <body>
 
 <div class="container">
+  <header>
   <h1>Coffee Extraction</h1>
-  <p>
-    Comparing Total Dissolved Solids (TDS)% with Soluble Extract%
-  </p>
-  <figure class="main"></figure>
+  <aside>
+    <h3>
+      An Analysis of Total Soluable Extract Resultant from Various Coffee
+      Brewing Methods
+    </h3>
+  </aside>
+  </header>
+
+  <section>
+    <h2>Abstract and Background</h2>
+    <p>
+    Since the 1950s there have been multiple coffee taste-preference trials.
+    The original was performed by the <em>Brewing Committee of the National
+      Coffee Association</em><sup><a href="#ref1">1</a></sup>  wherein it was
+    determined that the main factors affecting taste-preference are:
+    <ol>
+      <li><strong>Total disolved solids</strong>, e.g. the strength of the brew</li>
+      <li><strong>Soluable Extract</strong>, e.g. the percent of the beans extracted to derive the brew strength</li>
+    </ol>
+    </p>
+
+    <p>
+    The <strong>Total dissolved solids (TDS %)</strong> present in a given cup
+    directly correlates with coffee strength&#8212;the greater the TDS % the
+    higher the strength of the resultant brew. The <strong>Soluable Extract
+    (SE %)</strong> represents the portion of the beans that were used to
+    derive the TDS %. The greater the percentage of the ground beans material
+    extracted into a solution (the SE %), the more likely you are to extract
+    bitter compounds from the beans. The smaller the percentage of ground
+    beans that are extracted into a solution, the less likely you are to
+    extract desirable components from the ground beans.
+    </p>
+
+    <p>
+    I conducted a series of trials comparing three available methods of brewing
+    across the two important factors of taste as determined in previous experiments.
+    </p>
+  </section>
+
+  <section>
+    <figure>
+      <div class="main"></div>
+      <figcaption>
+        Comparing Total Dissolved Solids (TDS)% with Soluble Extract%
+      </figcaption>
+    </figure>
+  </section>
+
+  <section class="references">
+    <h2>Bibliography</h2>
+    <ul>
+      <li>
+        <a id="ref1" href="http://coffeed.com/viewtopic.php?f=17&t=2965#p28979">
+          http://coffeed.com/viewtopic.php?f=17&t=2965#p28979
+        </a>
+      </li>
+    </ul>
+  </section>
 </div>
 
 <script src="http://d3js.org/d3.v3.min.js"></script>
@@ -281,7 +345,7 @@ d3.csv("data.csv", function(error, data) {
             y = yMap(d) + 30;
         } else {
           var x = xMap(d) + 35,
-            y = yMap(d) - 30;
+            y = yMap(d) - 20;
         }
 
         var left = "left:" + x + "px;",
