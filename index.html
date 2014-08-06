@@ -1,104 +1,113 @@
 <!DOCTYPE html>
+<!-- Head {{{ -->
 <html>
-<meta charset="utf-8">
+<head>
+  <meta charset="utf-8">
 
-<!-- Example based on http://bl.ocks.org/mbostock/3887118 -->
-<!-- Tooltip example from http://www.d3noob.org/2013/01/adding-tooltips-to-d3js-graph.html -->
+  <title>The Science of Coffee&#8212;Examining extraction</title>
+  <!-- Example based on http://bl.ocks.org/mbostock/3887118 -->
+  <!-- Tooltip example from http://www.d3noob.org/2013/01/adding-tooltips-to-d3js-graph.html -->
 
-<style>
-body {
-  color: #555;
-  font-family: sans-serif;
-}
+  <!-- CSS {{{ -->
+  <style>
+  body {
+    color: #555;
+    font-family: sans-serif;
+  }
 
-header {
-  border-bottom: 1px solid #ccc;
-}
+  header {
+    border-bottom: 1px solid #ccc;
+  }
 
-figure {
-  margin: 0;
-  padding: 0;
-}
+  figure {
+    margin: 0;
+    padding: 0;
+  }
 
-.container {
-  width: 960px;
-  margin: 0 auto;
-}
+  .container {
+    width: 960px;
+    margin: 0 auto;
+  }
 
-.main {
-  position: relative;
-  font: 10px sans-serif;
-  margin: 0;
-  padding: 0;
-}
+  .main {
+    position: relative;
+    font: 10px sans-serif;
+    margin: 0;
+    padding: 0;
+  }
 
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+  }
 
-.dot {
-  stroke: #000;
-}
+  .dot {
+    stroke: #000;
+  }
 
-.tooltip {
-  position: absolute;
-  width: 100px;
-  pointer-events: none;
-}
+  .tooltip {
+    position: absolute;
+    width: 100px;
+    pointer-events: none;
+  }
 
-.ideal {
-  fill: #e7ba52;
-  opacity: 0.5;
-}
+  .ideal {
+    fill: #e7ba52;
+    opacity: 0.5;
+  }
 
-.ideal-text {
-  fill: #bd9e39;
-  font-size: 2em;
-}
+  .ideal-text {
+    fill: #bd9e39;
+    font-size: 2em;
+  }
 
-.not-ideal {
-  fill: #e7cb94;
-  opacity: 0.5;
-}
+  .not-ideal {
+    fill: #e7cb94;
+    opacity: 0.5;
+  }
 
-.not-ideal-text {
-  fill: #8c6d31;
-}
+  .not-ideal-text {
+    fill: #8c6d31;
+  }
 
-</style>
+  </style>
+  <!-- }}} -->
+</head>
+<!-- }}} -->
 <body>
 
 <div class="container">
   <header>
-  <h1>Coffee Extraction</h1>
+  <h1>The Science of Coffee</h1>
   <aside>
     <h3>
-      An Analysis of Total Soluable Extract Resultant from Various Coffee
+      An Analysis of Total Soluble Extract Resultant from Various Coffee
       Brewing Methods
     </h3>
   </aside>
   </header>
 
   <section>
-    <h2>Abstract and Background</h2>
+    <headline>
+      <h2>Abstract and Background</h2>
+    </headline>
     <p>
     Since the 1950s there have been multiple coffee taste-preference trials.
     The original was performed by the <em>Brewing Committee of the National
       Coffee Association</em><sup><a href="#ref1">1</a></sup>  wherein it was
     determined that the main factors affecting taste-preference are:
     <ol>
-      <li><strong>Total disolved solids</strong>, e.g. the strength of the brew</li>
-      <li><strong>Soluable Extract</strong>, e.g. the percent of the beans extracted to derive the brew strength</li>
+      <li><strong>Total dissolved solids</strong>, e.g. the strength of the brew</li>
+      <li><strong>Soluble Extract</strong>, e.g. the percent of the beans extracted to derive the brew strength</li>
     </ol>
     </p>
 
     <p>
     The <strong>Total dissolved solids (TDS %)</strong> present in a given cup
     directly correlates with coffee strength&#8212;the greater the TDS % the
-    higher the strength of the resultant brew. The <strong>Soluable Extract
+    higher the strength of the resultant brew. The <strong>Soluble Extract
     (SE %)</strong> represents the portion of the beans that were used to
     derive the TDS %. The greater the percentage of the ground beans material
     extracted into a solution (the SE %), the more likely you are to extract
@@ -114,6 +123,88 @@ figure {
   </section>
 
   <section>
+    <headline>
+      <h2>Materials and Methods</h2>
+    </headline>
+
+    <p>
+      Each coffee brewed, in order to be comparable, should be brewed to
+      comparable standards. For this project I chose to adhere to the
+      <strong>Specialty Coffee Association of America (SCAA)</strong>
+      cupping standards<sup><a href="#ref2">2</a></sup>.
+    </p>
+
+    <h3>Brew variables</h3>
+
+    <ul>
+      <li>
+        <h4>Water<sup><a href="#ref3">3</a></sup></h4>
+        <p>
+        Water Preparation:
+          <ul>
+            <li>10L Distilled Water</li>
+            <li>0.3g CaCl<sub>2</sub></li>
+            <li>0.2g NaCl</li>
+            <li>0.3g Ca(OH<sub>2</sub>)</li>
+          </ul>
+        </p>
+        <p>
+        Water Target:
+          <ul>
+            <li>Total Hardness as CaCO<sub>3</sub> ~ 61ppm</li>
+            <li>Total Alkalinity as CaCO<sub>3</sub> ~ 41ppm</li>
+            <li>Sodium ~ 8ppm</li>
+          </ul>
+        </p>
+      </li>
+      <li>
+        <h4>Water-to-coffee-ratio<sup><a href="#ref4">4</a></sup></h4>
+        <p>
+          0.055g coffee per 1 ml water
+        </p>
+      </li>
+      <li>
+        <h4>Water Temperature</h4>
+        <p>
+          203&deg;F&#8212;Roughly boiling temperature for Longmont.
+        </p>
+      </li>
+      <li>
+        <h4>Grind</h4>
+        <p>
+          All grinds done on the "8" setting of a Baratza Maestro Plus Conical Burr Grinder
+        </p>
+      </li>
+      <li>
+        <h4>Trials</h4>
+        <p>
+          Three trials were performed for each brew method to ensure consistency
+        </p>
+      </li>
+    </ul>
+
+    <h3>TDS % and SE % Measurement</h3>
+  <p>
+  TDS % was tracked via two methods:
+  <ol>
+    <li>TDS Meter&#8212;As sold on the SCAA website<sup><a href="#ref5">5</a></sup></li>
+    <li>Brix % Refractometer</li>
+  </ol>
+
+
+  <pre>
+  <code>
+    Brew water * tds% / beans
+  </code>
+  </pre>
+    </p>
+    <h3>Methods of Brewing</h3>
+  </section>
+
+  <section>
+    <headline>
+      <h2>Results</h2>
+    </headline>
     <figure>
       <div class="main"></div>
       <figcaption>
@@ -122,18 +213,47 @@ figure {
     </figure>
   </section>
 
+  <section>
+    <headline>
+      <h2>Conclusions</h2>
+    </headline>
+  </section>
+
   <section class="references">
-    <h2>Bibliography</h2>
-    <ul>
+    <h2>References</h2>
+    <ol>
       <li>
         <a id="ref1" href="http://coffeed.com/viewtopic.php?f=17&t=2965#p28979">
           http://coffeed.com/viewtopic.php?f=17&t=2965#p28979
         </a>
       </li>
-    </ul>
+      <li>
+        <a id="ref2" href="http://www.scaa.org/?page=resources&d=cupping-standards">
+          http://www.scaa.org/?page=resources&d=cupping-standards
+        </a>
+      </li>
+      <li>
+        <a id="ref3" href="https://scaa.org/PDF/ST%20-%20WATER%20STANDARD%20V.21NOV2009A.pdf">
+          https://scaa.org/PDF/ST%20-%20WATER%20STANDARD%20V.21NOV2009A.pdf
+        </a>
+      </li>
+      <li>
+        <a id="ref4" href="http://www.scaa.org/PDF/resources/coffee-to-water-ratio-for-cupping.pdf">
+          http://www.scaa.org/PDF/resources/coffee-to-water-ratio-for-cupping.pdf
+        </a>
+      </li>
+      <li>
+        <a id="ref5" href="https://netforum.avectra.com/eweb/shopping/shopping.aspx?site=scaa10&shopsearch=&shopsearchcat=merchandise&productcat&prd_key=82b69967-6438-40c0-9685-91afec83c22e">
+          TDS Meter
+        </a>
+      </li>
+
+
+    </ol>
   </section>
 </div>
 
+<!-- Javascript {{{ -->
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
@@ -345,7 +465,7 @@ d3.csv("data.csv", function(error, data) {
             y = yMap(d) + 30;
         } else {
           var x = xMap(d) + 35,
-            y = yMap(d) - 20;
+            y = yMap(d) - 25;
         }
 
         var left = "left:" + x + "px;",
@@ -379,5 +499,6 @@ d3.csv("data.csv", function(error, data) {
 
 });
 </script>
+<!-- }}} -->
 </body>
 </html>
