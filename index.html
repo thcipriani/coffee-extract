@@ -19,9 +19,40 @@
     border-bottom: 1px solid #ccc;
   }
 
+  h1 {
+    font-size: 4em;
+      margin-bottom: 0.25em;
+  }
+
   figure {
     margin: 0;
     padding: 0;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  table {
+    border: 1px solid #ddd;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 2em;
+  }
+
+  table tr {
+    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+  }
+
+  table th,
+  table td {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    padding: 8px;
+    vertical-align: top;
   }
 
   .container {
@@ -89,6 +120,7 @@
   </aside>
   </header>
 
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/CoffeeDetail.jpg">
   <section>
     <headline>
       <h2>Abstract and Background</h2>
@@ -186,25 +218,161 @@
     <h3>TDS % and SE % Measurement</h3>
   <p>
   TDS % was tracked via two methods:
+  </p>
   <ol>
     <li>TDS Meter&#8212;As sold on the SCAA website<sup><a href="#ref5">5</a></sup></li>
     <li>Brix % Refractometer</li>
   </ol>
 
-
+  <p>
+  The Brix % of a solution is a measure of the sugar content of a solution.
+  Since the sugar content of a coffee extraction varies directly with the
+  TDS % of a solution, a formula can be applied to derive the TDS % from
+  the Brix %:
   <pre>
-  <code>
-    Brew water * tds% / beans
-  </code>
+    Brix % * 0.85 = TDS % <sup><a href="#ref6">6</a></sup>
   </pre>
-    </p>
-    <h3>Methods of Brewing</h3>
+
+  After the TDS % is measured or derived, calculation of the total
+  percentage extraction of bean weight extracted is relatively simple:
+  <pre>
+    Total Coffee Brewed(g) * TDS % / Beans Used(g)<sup><a href="#ref7">7</a></sup>
+  </pre>
+  </p>
+  <h3>Methods of Brewing</h3>
+  <p>
+  Three methods of coffee brewing were chosen, primarily by choosing brewing
+  products which I already owned. This, however, was not the case for the
+  Mr. Coffee machine which I procured from the local Goodwill store. The
+  three methods of brewing that were tested were:
+  </p>
   </section>
 
   <section>
     <headline>
       <h2>Results</h2>
     </headline>
+  <table>
+    <thead>
+      <tr>
+        <th>Method</th>
+        <th>Trial</th>
+        <th>Coffee (g)</th>
+        <th>Water (g)</th>
+        <th>Yield (g)</th>
+        <th>Brix %</th>
+        <th>TDS % (derived)</th>
+        <th>TDS % (measured)</th>
+        <th>SE %</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td rowspan="3">
+          Mr. Coffee
+        </td>
+        <td>1</td>
+        <td rowspan="3">
+          38.5
+        </td>
+        <td rowspan="3">
+          700
+        </td>
+        <td>606</td>
+        <td>1.90</td>
+        <td>1.62</td>
+        <td>1.51</td>
+        <td>25.42</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>565</td>
+        <td>1.90</td>
+        <td>1.62</td>
+        <td>1.42</td>
+        <td>23.70</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>587</td>
+        <td>1.90</td>
+        <td>1.62</td>
+        <td>1.43</td>
+        <td>24.25</td>
+      </tr>
+
+      <tr>
+        <td rowspan="3">
+          Chemex
+        </td>
+        <td>1</td>
+        <td rowspan="3">
+          38.5
+        </td>
+        <td rowspan="3">
+          700
+        </td>
+        <td>622</td>
+        <td>1.3</td>
+        <td>1.105</td>
+        <td>1.09</td>
+        <td>17.85</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>625</td>
+        <td>1.4</td>
+        <td>1.19</td>
+        <td>1.21</td>
+        <td>19.31</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>621</td>
+        <td>1.3</td>
+        <td>1.11</td>
+        <td>1.17</td>
+        <td>16.93</td>
+      </tr>
+
+      <tr>
+        <td rowspan="3">
+          Aeropress
+        </td>
+        <td>1</td>
+        <td rowspan="3">
+          11
+        </td>
+        <td rowspan="3">
+          200
+        </td>
+        <td>187</td>
+        <td>1.1</td>
+        <td>0.94</td>
+        <td>0.99</td>
+        <td>15.90</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>187</td>
+        <td>1.2</td>
+        <td>1.02</td>
+        <td>1.13</td>
+        <td>17.34</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>190</td>
+        <td>1.1</td>
+        <td>0.94</td>
+        <td>1.1</td>
+        <td>16.15</td>
+      </tr>
+
+
+    </tbody>
+  </table>
+
     <figure>
       <div class="main"></div>
       <figcaption>
@@ -216,6 +384,15 @@
   <section>
     <headline>
       <h2>Conclusions</h2>
+      <p>
+        While there were some limitations given the precision of my
+        equipment, one can draw some conclusions from this data:
+      </p>
+        <ol>
+          <li>Brix % does seem to vary fairly directly with TDS %</li>
+          <li>The Aeropress does not fair well when brewing coffee according to SCAA cupping standards (standards which ostensibly are meant for drip coffee)</li>
+          <li>The Mr Coffee brewer makes consistently bitter coffee</li>
+        </ol>
     </headline>
   </section>
 
@@ -245,6 +422,16 @@
       <li>
         <a id="ref5" href="https://netforum.avectra.com/eweb/shopping/shopping.aspx?site=scaa10&shopsearch=&shopsearchcat=merchandise&productcat&prd_key=82b69967-6438-40c0-9685-91afec83c22e">
           TDS Meter
+        </a>
+      </li>
+      <li>
+        <a id="ref6" href="http://coffeegeek.com/forums/coffee/machines/203992">
+          Alan Alder's Brix % &rarr; TDS %
+        </a>
+      </li>
+      <li>
+        <a id="ref7" href="http://coffeegeek.com/forums/coffee/questions/617573">
+          http://coffeegeek.com/forums/coffee/questions/617573
         </a>
       </li>
 
